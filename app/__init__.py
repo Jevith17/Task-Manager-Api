@@ -26,6 +26,12 @@ def create_app(test_config=None):
     from . import database
     database.init_app(app)
 
+    # <<<--- ADD THIS PART --- S>>>
+    # Import and register the blueprint
+    from . import routes
+    app.register_blueprint(routes.api_bp, url_prefix='/api')
+    # <<<--- END OF ADDED PART --- S>>>
+
     # A simple test route
     @app.route('/hello')
     def hello():
